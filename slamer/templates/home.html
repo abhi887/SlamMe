@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block page_title %}{% endblock %}
+{% block body %}
+{% if logged == True %}
+<div class="logged_area">
+    <h5>{{log_user}}</h5>
+    <table>
+        <tr>
+            <td>
+                <br>
+                <form action="/logout" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
+                    <button type="submit" id="logout">Logout</button>
+                </form>
+            </td>
+            <td>
+                <a href="/prprofile?user={{log_user}}"><button type="button" id="profile_getter">Profile</button></a>
+            </td>
+        </tr>
+    </table>
+</div><br>
+{% else %}
+    <a href="/login"><button>Login</button></a>
+{% endif %}
+<form action="/usearch?user={{log_user}}" id="user_search_form" method="POST">
+    {% csrf_token %}
+    <input type="text" name="user_search" id="user_search" placeholder="Username"><br>
+    <button type="submit" id="user_search_submit">Search</button>
+</form>
+<div class="home_slams">
+    {% for slam in home_slams %}
+        <div id="some_rand_slam">
+            <h4>Slam from : {{slam.post_from}}</h4>
+            <h4>Slam to : {{slam.post_for}}</h4>
+            <table>
+                <tr>
+                    <td>
+                        <form name="slam_view_form" id="slam_view_form" action="/slam?user={{log_user}}" method='POST'>
+                            {% csrf_token %}
+                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
+                            <input type="text" name="post_for" id="post_for" value="{{slam.post_for}}" style="display: none;">
+                            <button id="slam_view_submit" name="slam_view_submit" type="submit">View</button>
+                        </form>            
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

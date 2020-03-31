@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block page_title %}Search Results{% endblock %}
+{% block body %}
+{% if logged == True %}
+<div class="logged_area">
+    <h5>{{log_user}}</h5>
+    <form action="/logout" method="POST">
+        {% csrf_token %}
+        <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
+        <button type="submit" id="logout">Logout</button>
+    </form>
+</div><br>
+{% endif %}
+    <div class="user_search_results">
+        {% for user in users %}
+            <div id="user">
+                <h2>Username : {{user.1}}</h2>
+                <h3>Name : {{user.0}}</h2>
+                <a href="/pprofile?user={{user.1}}"><button type="button" id="go_to_profile">Profile</button></a>
+                {% if logged == True %}
+                <form action="/reqslam?user={{log_user}}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="req_for" id="req_for" value="{{user.1}}" style="display: none;">
+                    <input type="text" name="user_search" id="user_search" value="{{user_search}}" style="display: none;">
+                    {% if user.3 == 'visible' or user.3 == none %}
+                    <button type="submit" id="request_slam">Request Slam</button>
+                    {% else %}
+                    <button type="submit" id="request_slam" disabled>Request Slam</button>
+                    {% endif %}
+                </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

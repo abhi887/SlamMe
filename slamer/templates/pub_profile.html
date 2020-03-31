@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{profile.username}}{% endblock %}
+{% block page_title %}{% endblock %}
+{% block body %}
+    {% if profile != '' %}
+    <div class="user_info">
+        <h2 id="username">{{profile.username}}</h2>
+        <h3 id="name">Name : {{profile.name}}</h2>
+        {% if profile.bio != none %}
+        <h4 id="user_bio">About Me : {{profile.bio}}</h4>
+        {% else %}
+        <h4 id="user_bio">About Me : Something interesting about me coming soon !</h4>
+        {% endif %}
+    </div>
+    <hr>
+    <h3>Public Slams :</h3>
+    <br>
+    {# for slams in public_slams #}
+    <div class="public_slams">
+        <div>
+            <h5>
+                some placeholder content here representing public slams ; )
+            </h5>
+        </div>
+    {# endfor #}
+    </div>
+    {% else %}
+    <h2>Sorry , user not found ! </h2>
+    {% endif %}
+{% endblock %}

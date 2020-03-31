@@ -1,0 +1,15 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slamme - {% block title %}{% endblock %}</title>
+</head>
+<body>
+    <center>
+    <h1 id="site_name"><a href="/home?user={{log_user}}"> Slamme </a></h1>
+    <h2>{% block page_title %}{% endblock %}</h2>
+    {% block body %}{% endblock %}
+    <div class="footer_links">{% block footer %}{% endblock %}</div>
+    </center>
+</body>
+</html>

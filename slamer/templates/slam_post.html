@@ -1,0 +1,79 @@
+{% extends 'base.html'%}
+{% block title %}Write Slam{% endblock %}
+{% block page_title %}Post Slam{% endblock %}
+{% block body %}
+<div class="slam_section">
+    <form action="/slampost?user={{log_user}}" method="POST" id="slam_questionnaire">
+        {% csrf_token %}
+        <input type="text" name="post_from" id="post_from" style="display: none;" value="{{post_from}}">
+        <input type="text" name="post_for" id="post_for" style="display: none;" value="{{post_for}}">
+    <table>
+        <tr>
+           <td> Do you believe in destiny , what's yours and what's mine ?</td>
+        </tr>
+        <tr><td><textarea name="f1" id="f1" cols="20" rows="3"></textarea></td></tr>
+        <tr>
+           <td> Your philosophy of life ?</td>
+        </tr>
+        <tr><td><textarea name="f2" id="f2" cols="20" rows="3"></textarea></td></tr>
+        <tr>
+           <td> My nickname ?</td>
+        </tr>
+        <tr><td><textarea name="f3" id="f3" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+           <td> What you like the most about me ? </td>
+        </tr>
+        <tr><td><textarea name="f4" id="f4" cols="20" rows="8"></textarea></td></tr>
+        <tr>
+           <td> What you hate the most about me ?</td>
+        </tr>
+        <tr><td><textarea name="f5" id="f5" cols="20" rows="8"></textarea></td></tr>
+        <tr>
+           <td> Funniest Experience ?</td>
+        </tr>
+        <tr><td><textarea name="f6" id="f6" cols="20" rows="8"></textarea></td></tr>
+        <tr>
+           <td> Favourite movie ? </td>
+        </tr>
+        <tr><td><textarea name="f7" id="f7" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+           <td> Most listened/favourite song ? </td>
+        </tr>
+        <tr><td><textarea name="f8" id="f8" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+           <td> Your three wishes in life ?</td>
+        </tr>
+        <tr><td><textarea name="f9" id="f9" cols="20" rows="3"></textarea></td></tr>
+        <tr>
+           <td> Your ambition ?</td>
+        </tr>
+        <tr><td><textarea name="f10" id="f10" cols="20" rows="3"></textarea></td></tr>
+        <tr>
+            <td>What animal would i be ?</td>
+        </tr>
+        <tr><td><textarea name="f11" id="f11" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+            <td>Want me to have more ..</td>
+        </tr>
+        <tr><td><textarea name="f12" id="f12" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+            <td>My irrititaing or cute habit ?</td>
+        </tr>
+        <tr><td><textarea name="f13" id="f13" cols="20" rows="8"></textarea></td></tr>
+        <tr>
+            <td>Best memory with me ?</td>
+        </tr>
+        <tr><td><textarea name="f14" id="f14" cols="20" rows="8"></textarea></td></tr>
+        <tr>
+            <td>Your crush ?</td>
+        </tr>
+        <tr><td><textarea name="f15" id="f15" cols="15" rows="2"></textarea></td></tr>
+        <tr>
+            <td>Write your heart out and be creative ...</td>
+        </tr>
+        <tr><td><textarea name="f16" id="f16" cols="20" rows="8"></textarea></td></tr>
+    </table>
+    <button type="submit" id="submit_slam">Post Slam</button>
+</form>
+</div>
+{% endblock %}

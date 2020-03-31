@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %} {{my_info.username}} {% endblock %}
+{% block page_title %} {{my_info.username}} {% endblock %}
+{% block body %}
+<div class="logged_area">
+    <table>
+            <tr>
+                <td>
+                    <form action="/logout" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
+                        <button type="submit" id="logout">Logout</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/fupprofile" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="up_username" value="{{log_user}}" style="display: none;" id="up_username">
+                        <button type="submit" id="update_profile">Update profile</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div><br>
+    <h3>Name : {{my_info.name}}</h3>
+    <h3>About Me : {{my_info.bio}}</h3>
+    <hr>
+    {% if request_forme|length > 0 %}
+    <h3>Slam Requests :</h3>
+    <div class="request_forme">
+        {% for request in request_forme %}
+            <h4>{{request.req_from}}</h4>
+            <table>
+                <tr>
+                    <td>
+                        <a href="/pprofile?user={{request.req_from}}"><button type="button" id="go_to_profile">Profile</button></a>
+                    </td>
+                    <td><br>
+                        <form action="/fslam_form?user={{log_user}}" method='POST'>
+                            {% csrf_token %}
+                            <input type="text" name="post_from" id="post_from" value="{{request.req_from}}" style="display: none;">
+                            <input type="text" name="post_for" id="post_for" value="{{request.req_to}}" style="display: none;">             
+                            <button type="submit">Write Slam</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        {% endfor %}
+    </div>
+    <hr>
+    {% endif %}
+    <div class="my_slams">
+        {% if my_slams|length == 0 %}
+        <h4>No slams yet ! , Get in there player ; )</h4>
+        {% else %}
+        <h3>My Slams :</h3>
+        {% for slam in my_slams %}
+        <div id='some_slam'>
+            <h4>Slam from : {{slam.post_from}}</h4>
+            <!-- <h5>My nickname ?</h5>
+            <h4>{{slam.f2}}</h4>
+            <h5>What you like the most about me ?</h5>
+            <h4>{{slam.f3}}</h4>
+            <h5>Favourite movie ?</h5>
+            <h4>{{slam.f6}}</h4> -->
+            <table>
+                <tr>
+                    <td>
+                        <form name="slam_view_form" id="slam_view_form" action="/slam?user={{log_user}}" method='POST'>
+                            {% csrf_token %}
+                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
+                            <input type="text" name="post_for" id="post_for" value="{{log_user}}" style="display: none;">
+                            <button id="slam_view_submit" name="slam_view_submit" type="submit">View</button>
+                        </form>            
+                    </td>
+                    <td>
+                        {% if slam.public == False %}
+                        <form name="slam_pub_form" id="slam_pub_form" action="/pptoggle?user={{log_user}}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
+                            <input type="text" name="post_for" id="post_for" value="{{log_user}}" style="display: none;">
+                            <button id="slam_pub_submit" name="slam_pub_submit" type="submit">Make Public</button>
+                        </form>
+                        {% else %}
+                        <form name="slam_priv_form" id="slam_priv_form" action="/pptoggle?user={{log_user}}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
+                            <input type="text" name="post_for" id="post_for" value="{{log_user}}" style="display: none;">
+                            <button id="slam_priv_submit" name="slam_priv_submit" type="submit">Make Private</button>
+                        </form>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form name="slam_delete_form" id="slam_delete_form" action="/slamwipe?user={{log_user}}" method='POST'>
+                            {% csrf_token %}
+                            <input type="text" name="post_id" id="post_id" value="{{slam.id}}" style="display: none;">
+                            <button id="slam_delete_submit" name="slam_delete_submit" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
