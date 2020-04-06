@@ -1,2 +1,4 @@
 django
+django_heroku
 pyscopg2
+gunicorn

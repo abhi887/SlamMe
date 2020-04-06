@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -80,10 +81,21 @@ WSGI_APPLICATION = 'slamme.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+
+    default : {
+        'Host':'ec2-18-209-187-54.compute-1.amazonaws.com',
+        'Database': 'd5gak8uhnkvc82',
+        'User':'vbyewjghjdbngr',
+        'Port':'5432',
+        'Password':'c932dbdf98bc404b77854db4d4b81842b59db10f4697efea06051bcdee52ed77',
+        'URI':'postgres://vbyewjghjdbngr:c932dbdf98bc404b77854db4d4b81842b59db10f4697efea06051bcdee52ed77@ec2-18-209-187-54.compute-1.amazonaws.com:5432/d5gak8uhnkvc82',
+        'Heroku CLI':'heroku pg:psql postgresql-amorphous-93344 --app slamme',
     }
+
 }
 
 
@@ -124,3 +136,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
