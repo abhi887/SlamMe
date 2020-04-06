@@ -35,6 +35,15 @@
         border:2px solid white;
     }
 
+    button[id="request_slam_disabled"]{
+        padding:2%;
+        margin-bottom:1%;
+        margin-left:40%;
+        border:2px solid white;
+        background-color: gray;
+        color:black;
+    }
+
     #some_user_img{
         float:left;
         margin-top:8%;

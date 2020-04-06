@@ -48,4 +48,11 @@
         background-color:lightskyblue;
     }
 
+    #passRules{
+        text-align: left;
+        margin-left:20%;
+        font-style: italic;
+        color:gray;
+    }
+
 }

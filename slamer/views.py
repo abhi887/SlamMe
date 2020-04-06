@@ -27,6 +27,13 @@ def signup(request):
         username=request.POST['username']
         key=request.POST['key']
         confirm_key=request.POST['confirm_key']
+        
+        if not isPassValid(str(key)):
+            context={
+                'status':"Password too weak",
+            }
+            return get_signup_template(request,context)
+        
         if(key != confirm_key):
             context={
                 'status':"Password and Confirm password fields don't match",
@@ -121,16 +128,20 @@ def usearch(request):
     if not old_request == None:
         for arequest in old_request:
             for auser in users:
-                if(auser[1] == arequest.req_to):
-                    if(len(auser) <= 3):
+                print(f"{auser[0]} == {arequest.req_to} ")
+                if(auser[0] == arequest.req_to):
+                    if(len(auser) < 3):
                         auser.append('hidden')
                     else:
-                        auser[3]='hidden'
+                        auser[2]='hidden'
                 else:
-                    if(len(auser) <= 3):
+                    if(len(auser) < 3):
                         auser.append('visible')
                     else:
-                        auser[3]='visible'
+                        auser[2]='visible'
+                print(f"auser = {auser}")
+    
+    print(f"\nold_requests = {old_request}")
 
     context={
         'users':users,
@@ -251,6 +262,8 @@ def request_slam(request):
             check=slam_request.objects.get(req_from=request.GET.get('user'))
             if check.req_to == request.POST['req_for']:
                 create_request=False
+            else:
+                create_request=True
         except:
             create_request=True
         if (create_request):
@@ -345,3 +358,32 @@ def slam_delete(request):
         return priv_profile(request)
     else:
         return fetch_login(request)
+
+def isPassValid(inpass):
+    inp=inpass
+    flag=flag3=1
+    flag2=flag4=0
+    if 7<len(inp)<=64:
+        asc = (list(ord(c) for c in inp))
+        nums = range(48,58)
+        # capalpha = range(65,91)
+        chars = (35,36,37,38,64,42,95,45,33)
+        for i in inp:
+            for j in nums:
+                if j in asc:
+                    flag=0
+            # for k in capalpha:
+            #     if k in asc:
+            #         flag2 = 0
+            for l in chars:
+                if l in asc:
+                    flag3=0
+            if 32 in asc:
+                flag4=1
+
+    if flag!=1 and flag2!=1 and flag3!=1 and flag4!=1:
+        #password Valid
+        return True
+    else :
+        #password Invalid
+        return False

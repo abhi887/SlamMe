@@ -11,6 +11,7 @@
 </form>
 <h3 id="featured_heading">Featured Slams</h3>
 <div class="home_slams">
+    {% if home_slams|length > 0 %}
     {% for slam in home_slams %}
         <div id="some_rand_slam">
             <img src="{% static 'featured_slam2.jpg' %}" alt="">
@@ -30,5 +31,8 @@
             </table>
         </div>
     {% endfor %}
+    {% else %}
+        <blockquote>Awesome slams coming here soon ... ; )</blockquote>
+    {% endif %}
 </div>
 {% endblock %}

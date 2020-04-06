@@ -9,17 +9,18 @@
             <div id="user">
                 <i id="some_user_img" class="far fa-user-circle"></i>
                 <h2>{{user.0}}</h2>
-                <h3>Name : {{user.1}}</h2>
+                <h3>Name : {{user.1}}</h3>
                 <a href="/pprofile?user={{log_user}}&user2={{user.0}}"><button type="button" id="go_to_profile">Profile</button></a>
                 {% if logged == True %}
                 <form action="/reqslam?user={{log_user}}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="req_for" id="req_for" value="{{user.1}}" style="display: none;">
+                    <input type="text" name="req_for" id="req_for" value="{{user.0}}" style="display: none;">
                     <input type="text" name="user_search" id="user_search" value="{{user_search}}" style="display: none;">
-                    {% if user.3 == 'visible' or user.3 == none %}
+                    {{user.3}}
+                    {% if user.2 == 'visible' or user.2 == none %}
                     <button type="submit" id="request_slam">Request Slam</button>
                     {% else %}
-                    <button type="submit" id="request_slam" disabled>Request Slam</button>
+                    <button type="submit" id="request_slam_disabled" disabled>Request Slam</button>
                     {% endif %}
                 </form>
                 {% endif %}
