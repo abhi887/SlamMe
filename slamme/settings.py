@@ -86,7 +86,7 @@ DATABASES = {
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
 
-    default : {
+    'default' : {
         'Host':'ec2-18-209-187-54.compute-1.amazonaws.com',
         'Database': 'd5gak8uhnkvc82',
         'User':'vbyewjghjdbngr',
