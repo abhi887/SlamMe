@@ -97,30 +97,43 @@ def usearch(request):
     users=[]
     users_by_username=cursor.execute(f"select * from slamer_user where username like '{search_user}%'")
     users_by_name=cursor.execute(f"select * from slamer_user where name like '{search_user}%'")
-    for i in users_by_username:
-        if(i[1]!=request.GET.get('user')):
-            users.append(list(i))
-    for j in users_by_name:
-        if(i[1]!=request.GET.get('user')):
-            users.append(list(j))
+    try:
+        for i in users_by_username:
+            if(i[1]!=request.GET.get('user')):
+                users.append(list(i))
+    except:
+        pass
+    
+    try:
+        for j in users_by_name:
+            if(i[1]!=request.GET.get('user')):
+                users.append(list(j))
+    except:
+        pass
 
-    old_request=None    
-    if(is_logged(request)):
-        old_request=slam_request.objects.raw(f'select * from slamer_slam_request where req_from ="{request.GET.get("user")}"')
+    old_request=None
+    try:
+        if(is_logged(request)):
+            old_request=slam_request.objects.raw(f'select * from slamer_slam_request where req_from ="{request.GET.get("user")}"')
+    except:
+        pass
     
     if not old_request == None:
-        for arequest in old_request:
-            for user in users:
-                if(user[1] == arequest.req_to):
-                    if(len(user) <= 3):
-                        user.append('hidden')
+        try:
+            for arequest in old_request:
+                for user in users:
+                    if(user[1] == arequest.req_to):
+                        if(len(user) <= 3):
+                            user.append('hidden')
+                        else:
+                            user[3]='hidden'
                     else:
-                        user[3]='hidden'
-                else:
-                    if(len(user) <= 3):
-                        user.append('visible')
-                    else:
-                        user[3]='visible'
+                        if(len(user) <= 3):
+                            user.append('visible')
+                        else:
+                            user[3]='visible'
+        except:
+            pass
 
     context={
         'users':users,
@@ -180,8 +193,10 @@ def priv_profile(request):
     username=request.GET.get('user')
     if(is_logged(request)):
         my_info=user.objects.get(username=username)
-        my_slams=slam_post.objects.raw(f'select * from slamer_slam_post where post_for="{username}"')
+        # my_slams=slam_post.objects.raw(f'select * from slamer_slam_post where post_for="{username}"')
+        my_slams=slam_post.objects.filter(post_for=str(username))
         request_forme=slam_request.objects.raw(f'select * from slamer_slam_request where req_to ="{username}"')
+        request_forme=slam_request.objects.filter(req_to=str(username))
         context={
             'logged':is_logged(request),
             'log_user':username,
