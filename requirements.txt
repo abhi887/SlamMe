@@ -1,4 +1,4 @@
 django
 django_heroku
-pyscopg2
+psycopg2
 gunicorn

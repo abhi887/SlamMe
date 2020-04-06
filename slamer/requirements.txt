@@ -1,4 +1,0 @@
-django
-django_heroku
-psycopg2
-gunicorn
