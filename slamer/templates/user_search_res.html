@@ -8,9 +8,9 @@
         {% for user in users %}
             <div id="user">
                 <i id="some_user_img" class="far fa-user-circle"></i>
-                <h2>{{user.1}}</h2>
-                <h3>Name : {{user.0}}</h2>
-                <a href="/pprofile?user={{log_user}}&user2={{user.1}}"><button type="button" id="go_to_profile">Profile</button></a>
+                <h2>{{user.0}}</h2>
+                <h3>Name : {{user.1}}</h2>
+                <a href="/pprofile?user={{log_user}}&user2={{user.0}}"><button type="button" id="go_to_profile">Profile</button></a>
                 {% if logged == True %}
                 <form action="/reqslam?user={{log_user}}" method="POST">
                     {% csrf_token %}
