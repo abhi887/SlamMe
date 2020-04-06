@@ -1,95 +1,75 @@
 {% extends 'base.html' %}
+{% load i18n static %}
 {% block title %}Slam{% endblock %}
-{% block page_title %}{{slam.post_from}}'s slam for {{log_user}}{% endblock %}
+{% block page_title %}{{slam.post_from}}'s slam for {{slam.post_for}}{% endblock %}
 {% block body %}
-{% if logged == True %}
-<div class="logged_area">
-    <h5>{{log_user}}</h5>
-    <table>
-        <tr>
-            <td>
-                <br>
-                <form action="/logout" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
-                    <button type="submit" id="logout">Logout</button>
-                </form>
-            </td>
-            <td>
-                <a href="/prprofile?user={{log_user}}"><button type="button" id="profile_getter">Profile</button></a>
-            </td>
-        </tr>
-    </table>
-</div><br>
-{% else %}
-    <a href="/login"><button>Login</button></a>
-{% endif %}
+<link rel="stylesheet" href="{% static 'slam.css' %}">
 <div class="slam_content">
 <table>
-    <tr>
+    <tr id="question">
        <td> Do you believe in destiny , what's yours and what's mine ?</td>
     </tr>
-    <tr><td>{{slam.f1}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f1}}</p></td></tr>
+    <tr id="question">
        <td> Your philosophy of life ?</td>
     </tr>
-    <tr><td>{{slam.f2}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f2}}</p></td></tr>
+    <tr id="question">
        <td> My nickname ?</td>
     </tr>
-    <tr><td>{{slam.f3}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f3}}</p></td></tr>
+    <tr id="question">
        <td> What you like the most about me ? </td>
     </tr>
-    <tr><td>{{slam.f4}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f4}}</p></td></tr>
+    <tr id="question">
        <td> What you hate the most about me ?</td>
     </tr>
-    <tr><td>{{slam.f5}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f5}}</p></td></tr>
+    <tr id="question">
        <td> Funniest Experience ?</td>
     </tr>
-    <tr><td>{{slam.f6}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f6}}</p></td></tr>
+    <tr id="question">
        <td> Favourite movie ? </td>
     </tr>
-    <tr><td>{{slam.f7}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f7}}</p></td></tr>
+    <tr id="question">
        <td> Most listened/favourite song ? </td>
     </tr>
-    <tr><td>{{slam.f8}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f8}}</p></td></tr>
+    <tr id="question">
        <td> Your three wishes in life ?</td>
     </tr>
-    <tr><td>{{slam.f9}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f9}}</p></td></tr>
+    <tr id="question">
        <td> Your ambition ?</td>
     </tr>
-    <tr><td>{{slam.f10}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f10}}</p></td></tr>
+    <tr id="question">
         <td>What animal would i be ?</td>
     </tr>
-    <tr><td>{{slam.f11}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f11}}</p></td></tr>
+    <tr id="question">
         <td>Want me to have more ..</td>
     </tr>
-    <tr><td>{{slam.f12}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f12}}</p></td></tr>
+    <tr id="question">
         <td>My irrititaing or cute habit ?</td>
     </tr>
-    <tr><td>{{slam.f13}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f13}}</p></td></tr>
+    <tr id="question">
         <td>Best memory with me ?</td>
     </tr>
-    <tr><td>{{slam.f14}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f14}}</p></td></tr>
+    <tr id="question">
         <td>Your crush ?</td>
     </tr>
-    <tr><td>{{slam.f15}}</td></tr>
-    <tr>
+    <tr id="answer"><td><p>{{slam.f15}}</p></td></tr>
+    <tr id="question">
         <td>Write your heart out and be creative ...</td>
     </tr>
-    <tr><td>{{slam.f16}}</td></tr>
+    <tr id="answer"><td><p>{{slam.f16}}</p></td></tr>
 </table>
 </div>
 {% endblock %}

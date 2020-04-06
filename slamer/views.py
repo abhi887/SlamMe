@@ -5,10 +5,14 @@ from django.db import connection
 from .models import user,abs_user,slam_request,slam_post
 
 def index(request):
-    return HttpResponse('Kudos ! this is setup now .. and now you are on the Landing page')
+    return fetch_home(request)
 
 def fetch_signup(request):
-    return render(request,'signup.html')
+    context={}
+    return get_signup_template(request,context)
+
+def get_signup_template(request,context):
+    return render(request,'signup.html',context)
 
 def fetch_login(request):
     context={}
@@ -22,18 +26,27 @@ def signup(request):
         name=request.POST['name']
         username=request.POST['username']
         key=request.POST['key']
+        confirm_key=request.POST['confirm_key']
+        if(key != confirm_key):
+            context={
+                'status':"Password and Confirm password fields don't match",
+            }
+            return get_signup_template(request,context)
         try:
             old_user=user.objects.get(username=username)
-            #Redirect to signup page after unsuccessful signup
-            return fetch_signup(request)
+            context={
+                'status':'Username already used',
+            }
+            #Redirect to signup page if username already exists
+            return get_signup_template(request,context)
         except:
             new_user1=user(name=name,username=username)
-            new_user2=user(uid=new_user1,logged=False,key=key)
+            new_user2=abs_user(uid=new_user1,logged=False,key=key)
             new_user1.save()
             new_user2.save()
             #Redirect to login page after successful signup
             context={
-                'status':'Signup Successful !'
+                'status':'Signup Successful !',
             }
             return get_login_template(request,context)
     else:
@@ -63,15 +76,6 @@ def login(request):
         return get_login_template(request,context) 
     else:
         return fetch_login(request)
-
-# def fetch_home(request):
-#     context={
-#         'logged':is_logged(request),
-#         'log_user':request.GET.get('user'),
-#     }
-#     if context['log_user']=='' or context['log_user']==None:
-#             context['log_user']=request.POST.get('username')
-#     return render(request,'home.html',context)
 
 def fetch_home(request):
     try:
@@ -129,12 +133,17 @@ def usearch(request):
     return render(request,'user_search_res.html',context)
 
 def pub_profile(request):
+    log_user=request.GET.get('user')
     if request.method == 'GET':
-        username=str(request.GET.get('user'))
+        username=str(request.GET.get('user2'))
+        pub_slams=slam_post.objects.raw(f'select * from slamer_slam_post where post_for="{username}" and public=True ')
         try:
             profile=user.objects.get(username=username)
             context={
                 'profile':profile,
+                'log_user':log_user,
+                'logged':is_logged(request),
+                'public_slams':pub_slams,
             }
         except:
             context={
@@ -294,7 +303,7 @@ def fetch_slam(request):
         slam=None
     context={
         'slam':slam,
-        'log_user':post_for,
+        'log_user':request.GET.get('user'),
         'logged':is_logged(request),
     }
     return render(request,'slam.html',context)

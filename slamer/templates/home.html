@@ -1,39 +1,21 @@
 {% extends 'base.html' %}
+{% load i18n static %}
 {% block title %}Home{% endblock %}
 {% block page_title %}{% endblock %}
 {% block body %}
-{% if logged == True %}
-<div class="logged_area">
-    <h5>{{log_user}}</h5>
-    <table>
-        <tr>
-            <td>
-                <br>
-                <form action="/logout" method="POST">
-                    {% csrf_token %}
-                    <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
-                    <button type="submit" id="logout">Logout</button>
-                </form>
-            </td>
-            <td>
-                <a href="/prprofile?user={{log_user}}"><button type="button" id="profile_getter">Profile</button></a>
-            </td>
-        </tr>
-    </table>
-</div><br>
-{% else %}
-    <a href="/login"><button>Login</button></a>
-{% endif %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
 <form action="/usearch?user={{log_user}}" id="user_search_form" method="POST">
     {% csrf_token %}
     <input type="text" name="user_search" id="user_search" placeholder="Username"><br>
     <button type="submit" id="user_search_submit">Search</button>
 </form>
+<h3 id="featured_heading">Featured Slams</h3>
 <div class="home_slams">
     {% for slam in home_slams %}
         <div id="some_rand_slam">
-            <h4>Slam from : {{slam.post_from}}</h4>
-            <h4>Slam to : {{slam.post_for}}</h4>
+            <img src="{% static 'featured_slam2.jpg' %}" alt="">
+            <h4>from : {{slam.post_from}}</h4>
+            <h4>to : {{slam.post_for}}</h4>
             <table>
                 <tr>
                     <td>

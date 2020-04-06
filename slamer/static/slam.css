@@ -1,0 +1,38 @@
+@media only screen and (max-device-width:600px){
+    
+    #page_title{
+        color:gray;
+        border-bottom:1px solid gray;
+        padding-bottom:2%;
+        width:60%;
+    }
+
+    .slam_content{
+        padding:1%;
+        margin-bottom:10%;
+    }
+
+    #question td{
+        background-color: rgb(204, 242, 255);
+        color:black;
+        padding:5%;
+        margin-top: 10%;
+        border-radius:5px;
+        font-size: 110%;
+        box-shadow: 1px 1px 2px gray;
+    }
+
+    #answer td{
+        width:100%;
+    }
+
+    #answer p{
+        margin-top:-1%;
+        margin-bottom:10%;
+        border-radius: 5px;
+        padding:3%;
+        background-color:rgba(204, 242, 255,0.4);
+        font-size: 120%;
+        box-shadow: 1px 1px 3px gray;
+    }
+}

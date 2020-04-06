@@ -1,0 +1,36 @@
+@media only screen and (max-device-width:600px){
+
+    #pub_user{
+        float:left;
+        margin-left:10%;
+        margin-right: 15%;
+    }
+
+    #username,#name{
+        text-align: left;
+        margin-left: 10%;
+    }
+
+    #about_label{
+        margin-top:10%;
+        color:gray;
+    }
+
+    #pub_slam_title{
+        text-align: left;
+        color:gray;
+    }
+
+    .public_slam{
+        margin-bottom:20%;
+    }
+
+    #some_slam{
+        padding:2%;
+        border-radius:1em;
+        color:black;
+        background-color: rgb(204, 242, 255);
+        box-shadow: 1px 1px 3px black;
+    }
+
+}

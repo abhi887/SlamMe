@@ -1,0 +1,45 @@
+/* ============== ||||      |||| ============= */
+/* ============== ||||      |||| ============= */
+/* ============== ||  \    /  || ============= */
+/* ============== ||    \/    || ============= */
+/* ============== ||          || ============= */ 
+/* ============== ||          || ============= */  
+/* ============== ||          || obile Screen  */  
+
+@media only screen and (max-device-width:670px){
+
+#featured_heading{
+    color: gray;
+    margin-left:5%;
+}
+
+.home_slams{
+    margin-bottom:20%;
+}
+
+#some_rand_slam img{
+    height:50%;
+    width:100%;
+    border-top-left-radius: 8%;
+    border-top-right-radius: 8%;
+}
+
+#some_rand_slam{
+    border:1px solid grey;
+    color:black;
+    margin-right:10%;
+    margin-left:10%;
+    border-radius: 6%;
+    background-color: azure;
+    box-shadow: 1px 1px 2px gray;
+}
+
+#some_rand_slam button{
+    text-align: center;
+    padding:40%;
+    margin-left:-30%;
+    background-color:#00bcd4;
+    border:1px solid transparent;
+}
+
+}

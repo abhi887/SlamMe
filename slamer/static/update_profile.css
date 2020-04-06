@@ -1,0 +1,32 @@
+@media only screen and (max-device-width:600px){
+
+    #page_title{
+        color:gray;
+    }
+
+    input{
+        margin-bottom:3%;
+        padding:3%;
+        font-size: 100%;
+        border-radius:4px;
+        border:1px ridge gray;
+    }
+
+    textarea{
+        width:106%;
+        font-size: 100%;
+        border-radius: 4px;
+        border:1px ridge gray;
+        margin-bottom:4%;
+    }
+
+    #profile_update{
+        margin-top:2%;
+        padding:2%;
+        background-color: tomato;
+        border:1px solid gray;
+        box-shadow: 1px 1px 2px black;
+        border-radius:3px;
+    }
+
+}

@@ -1,0 +1,51 @@
+/* ============== ||||      |||| ============= */
+/* ============== ||||      |||| ============= */
+/* ============== ||  \    /  || ============= */
+/* ============== ||    \/    || ============= */
+/* ============== ||          || ============= */ 
+/* ============== ||          || ============= */  
+/* ============== ||          || obile Screen  */  
+
+@media only screen and (max-device-width:600px){
+
+    input{
+        /* width:150%; */
+        margin-left:-4%;
+        padding:4%;
+        text-align: center;
+        margin-top:2%;
+        border-radius:5%;
+        background-color: transparent;
+        border:1px solid transparent;
+        border-radius:5%;
+        border-bottom:3px solid #44b78b;
+        transition: all 0.3s ease;
+    }
+
+    input:focus{
+        border-bottom:3px solid green;
+    }
+
+    button[id="signup_submit"]{
+        text-align: right;
+        margin-top:4%;
+        padding:3%;
+        background-color:rgb(51, 204, 255);
+        border:1px solid transparent;
+        border-radius:5%;
+    }
+
+    #page_title{
+        margin-top:10%;
+        margin-bottom:4%;
+    }
+
+    .signup_status{
+        width:44%;
+        padding:4%;
+        border-radius:5px 5px;
+        box-shadow: 1px 1px 2px black;
+        background-color:lightskyblue;
+    }
+
+}

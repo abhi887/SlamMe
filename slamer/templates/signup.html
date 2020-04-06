@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n static %}
 {% block title %} Signup {% endblock %}
 {% block page_title %} Signup {% endblock %}
+{% block logged_area %}{% endblock %}
 {% block body %}
-
+<link rel="stylesheet" href="{% static 'signup.css' %}">
+{% if status != none %}
+<br>
+<div class="signup_status">
+    {{status}}
+</div>
+<br>
+{% endif %}
 <form action="/register" id="signup_form" method="POST">
     {% csrf_token %}
     <table>
@@ -26,12 +35,8 @@
                 <input type="password" name="confirm_key" placeholder="Confirm Password" required>
             </td>
         </tr>
-        <tr>
-            <td>
-                <button type="submit" id="signup_submit">Signup</button>
-            </td>
-        </tr>
     </table>
+    <button type="submit" id="signup_submit">Signup</button>
 </form>
 {% endblock %}
-{% block footer %}<h4>Have an account ?&nbsp;<a href="/f_login">Login</a></h4>{% endblock %}
+{% block footer %}<h4>Have an account ?&nbsp;<a href="/flogin">Login</a></h4>{% endblock %}

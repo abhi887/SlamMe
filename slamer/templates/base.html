@@ -1,13 +1,63 @@
+{% load i18n static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slamme - {% block title %}{% endblock %}</title>
+    <title>SlamMe - {% block title %}{% endblock %}</title>
+    <script src="https://kit.fontawesome.com/8db7a4d75f.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
     <center>
-    <h1 id="site_name"><a href="/home?user={{log_user}}"> Slamme </a></h1>
-    <h2>{% block page_title %}{% endblock %}</h2>
+    <div class="header">
+        <table>
+            <tr>
+                <td id="header_td">
+                    <h1 id="site_name"><a href="/home?user={{log_user}}"><i class="fas fa-pencil-alt"></i>  SlamMe </a></h1>    
+                </td>
+                <td id="header_td">
+                    {% block logged_area %}
+                    <span class="logged_area">
+                    {% if logged == True %}
+                    <h5 id="log_username">{{log_user}}</h5>
+                        <table>
+                            <tr>
+                                <td>
+                                    <form id="log_username_form" action="">
+                                        {% csrf_token %}
+                                        <input type="text" style="display: none;">
+                                        <!-- <a href="/home?user={{log_user}}"><button type="button" id="home"> Home </button></a> -->
+                                        <a href="/home?user={{log_user}}"><button type="button" id="home"><i class="fas fa-home"></i></button></a>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form id="log_username_form" action="">
+                                        {% csrf_token %}
+                                        <input type="text" style="display: none;">
+                                        <!-- <a href="/prprofile?user={{log_user}}"><button type="button" id="profile_getter">Profile</button></a> -->
+                                        <a href="/prprofile?user={{log_user}}"><button type="button" id="profile_getter"><i class="fas fa-user-circle"></i></button></a>
+                                    </form>
+                                </td>
+                                 <td>
+                                     <form action="/logout" id="log_username_form" method="POST">
+                                         {% csrf_token %}
+                                         <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
+                                         <!-- <button type="submit" id="logout">Logout</button> -->
+                                         <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i></button>
+                                     </form>
+                                 </td>
+                            </tr>
+                        </table>
+                        {% else %}
+                        <a id="login_button" href="/login"><button>Login</button></a>
+                        {% endif %}
+                    </span><br>
+                    {% endblock %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h2 id="page_title">{% block page_title %}{% endblock %}</h2>
     {% block body %}{% endblock %}
     <div class="footer_links">{% block footer %}{% endblock %}</div>
     </center>

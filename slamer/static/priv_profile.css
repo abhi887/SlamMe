@@ -1,0 +1,76 @@
+@media only screen and (max-device-width:600px){
+
+#log_username{
+    position:absolute;
+    top:0;
+    right:20;
+}
+
+#astro_user{
+    float:left;
+    margin-left:10%;
+    margin-right:15%;
+}
+
+#profile_username,#profile_name{
+    margin-top: 5%;
+    text-align: left;
+}
+
+label[for="profile_about"]{
+    text-align: left;
+    color:gray;
+}
+
+#slam_request_lable{
+    text-align: left;
+    color:gray;
+}
+
+.some_request{
+    background-color:azure;
+    color:black;
+    padding:2%;
+    box-shadow: 1px 1px 3px black;
+    border:1px solid transparent;
+    border-radius: 1em;
+}
+
+#requester{
+    margin-left:6%;
+    text-align: left;
+}
+
+.some_request table{
+    position:absolute;
+    right:20;
+    margin-top:-12%;
+}
+
+.request_forme{
+    padding-bottom:6%;
+}
+
+.my_slams{
+    margin-bottom:20%;
+}
+
+#my_slams_title{
+    text-align: left;
+    color:gray;
+}
+
+#some_slam{
+    padding:2%;
+    border-radius:1em;
+    color:black;
+    background-color: rgb(204, 242, 255);
+    box-shadow: 1px 1px 3px black;
+}
+
+#log_username_form button{
+    font-size: 140%;
+    color:white;
+}
+
+}

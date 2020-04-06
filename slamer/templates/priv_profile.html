@@ -1,50 +1,76 @@
 {% extends 'base.html' %}
+{%load i18n static %}
 {% block title %} {{my_info.username}} {% endblock %}
-{% block page_title %} {{my_info.username}} {% endblock %}
-{% block body %}
+{# block page_title #} {{my_info.username}} {# endblock #}
+{% block logged_area %}
 <div class="logged_area">
+    <h5 id="log_username">{{log_user}}</h5>
     <table>
             <tr>
                 <td>
-                    <form action="/logout" method="POST">
+                    <form id="log_username_form" action="">
                         {% csrf_token %}
-                        <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
-                        <button type="submit" id="logout">Logout</button>
+                        <input type="text" style="display: none;">
+                        <!-- <a href="/home?user={{log_user}}"><button type="button" id="home"> Home </button></a> -->
+                        <a href="/home?user={{log_user}}"><button type="button" id="home"><i class="fas fa-home"></i></button></a>
+                        
                     </form>
                 </td>
                 <td>
-                    <form action="/fupprofile" method="POST">
+                    <form action="/fupprofile" id="log_username_form" method="POST">
                         {% csrf_token %}
                         <input type="text" name="up_username" value="{{log_user}}" style="display: none;" id="up_username">
-                        <button type="submit" id="update_profile">Update profile</button>
+                        <!-- <a href=""><button type="submit" id="update_profile">Update</button></a> -->
+                        <a href=""><button type="submit" id="update_profile"><i class="fas fa-user-edit"></i></button></a>
+                    </form>
+                </td>
+                <td>
+                    <form action="/logout" id="log_username_form" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="out_username" value="{{log_user}}" style="display: none;" id="out_username">
+                        <!-- <button type="submit" id="logout">Logout</button> -->
+                        <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i></button>
                     </form>
                 </td>
             </tr>
         </table>
-    </div><br>
-    <h3>Name : {{my_info.name}}</h3>
-    <h3>About Me : {{my_info.bio}}</h3>
+    </div>
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{% static 'priv_profile.css' %}">
+    <i id="astro_user" class="fas fa-user-astronaut fa-5x"></i>
+    <h2 id="profile_username">{{my_info.username}}</h2>
+    <h3 id="profile_name">{{my_info.name}}</h3><br>
+    <label for="profile_about">About</label>
+    <h3 id="profile_about">{{my_info.bio}}</h3>
     <hr>
     {% if request_forme|length > 0 %}
-    <h3>Slam Requests :</h3>
+    <h3 id="slam_request_lable">Slam Requests :</h3>
     <div class="request_forme">
         {% for request in request_forme %}
-            <h4>{{request.req_from}}</h4>
+        <div class="some_request">
+            <h4 id="requester">{{request.req_from}}</h4>
             <table>
                 <tr>
                     <td>
-                        <a href="/pprofile?user={{request.req_from}}"><button type="button" id="go_to_profile">Profile</button></a>
+                        <form>
+                            {% csrf_token %}
+                            <input type="text" style="display: none;">
+                            <input type="text" style="display: none;">             
+                            <a href="/pprofile?user={{request.req_to}}&user2={{request.req_from}}"><button type="button" id="go_to_profile">Profile</button></a>
+                        </form>
                     </td>
-                    <td><br>
+                    <td>
                         <form action="/fslam_form?user={{log_user}}" method='POST'>
                             {% csrf_token %}
                             <input type="text" name="post_from" id="post_from" value="{{request.req_from}}" style="display: none;">
                             <input type="text" name="post_for" id="post_for" value="{{request.req_to}}" style="display: none;">             
-                            <button type="submit">Write Slam</button>
+                            <a href="" id="some_request_button"><button type="submit">Write Slam</button></a>
                         </form>
                     </td>
                 </tr>
             </table>
+        </div>
         {% endfor %}
     </div>
     <hr>
@@ -53,7 +79,7 @@
         {% if my_slams|length == 0 %}
         <h4>No slams yet ! , Get in there player ; )</h4>
         {% else %}
-        <h3>My Slams :</h3>
+        <h3 id="my_slams_title" >My Slams :</h3>
         {% for slam in my_slams %}
         <div id='some_slam'>
             <h4>Slam from : {{slam.post_from}}</h4>
