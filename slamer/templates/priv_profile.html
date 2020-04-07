@@ -68,6 +68,14 @@
                             <a href="" id="some_request_button"><button type="submit">Write Slam</button></a>
                         </form>
                     </td>
+                    <td>
+                        <form action="/reqdel?user={{log_user}}" method='POST'>
+                            {% csrf_token %}
+                            <input type="text" name="req_from" id="req_from" value="{{request.req_from}}" style="display: none;">
+                            <input type="text" name="req_to" id="req_to" value="{{request.req_to}}" style="display: none;">             
+                            <a href="" id="some_request_button"><button type="submit">Delete</button></a>
+                        </form>
+                    </td>
                 </tr>
             </table>
         </div>

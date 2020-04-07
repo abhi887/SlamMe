@@ -12,10 +12,12 @@
 .header #site_name>a{
     text-decoration: none;
     color:#44b78b;
+    font-family: 'Lobster Two', cursive;
 }
 
 body{
     background-color: ghostwhite;
+    font-family: 'Roboto', sans-serif;
 }
 
 .header{

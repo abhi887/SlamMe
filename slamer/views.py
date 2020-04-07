@@ -24,7 +24,7 @@ def get_login_template(request,context):
 def signup(request):
     if request.method == 'POST':
         name=request.POST['name']
-        username=request.POST['username']
+        username=str(request.POST['username']).lower()
         key=request.POST['key']
         confirm_key=request.POST['confirm_key']
         
@@ -62,7 +62,7 @@ def signup(request):
 
 def login(request):
     if request.method == 'POST':  
-        username=request.POST['username']
+        username=str(request.POST['username']).lower()
         key=str(request.POST['key'])
         print(f'login creds = {username} | {key}')
         try:
@@ -99,7 +99,18 @@ def fetch_home(request):
     return render(request,'home.html',context)
 
 def usearch(request):
-    search_user=request.POST['user_search']
+    search_user=str(request.POST['user_search']).lower()
+    
+    if search_user == ' ':
+        context={
+        'users':'',
+        'logged':is_logged(request),
+        'log_user':request.GET.get('user'),
+        'old_request':'',
+        'user_search':search_user,
+        }
+        return render(request,'user_search_res.html',context)
+        
     cursor=connection.cursor()
     users=[]
     # users_by_username=cursor.execute(f"select * from slamer_user where username like '{search_user}%'")
@@ -312,6 +323,16 @@ def slam_poster(request):
         delete_request.delete()
         new_post=slam_post(post_from=post_from,post_for=post_for,public=False,f1=f1,f2=f2,f3=f3,f4=f4,f5=f5,f6=f6,f7=f7,f8=f8,f9=f9,f10=f10,f11=f11,f12=f12,f13=f13,f14=f14,f15=f15,f16=f16)
         new_post.save()
+        return priv_profile(request)
+    else:
+        return fetch_login(request)
+
+def req_delete(request):
+    if is_logged(request) and request.method == 'POST' :
+        req_from=request.POST['req_from']
+        req_to=request.POST['req_to']
+        del_request=slam_request.objects.get(req_from=req_from,req_to=req_to)
+        del_request.delete()
         return priv_profile(request)
     else:
         return fetch_login(request)

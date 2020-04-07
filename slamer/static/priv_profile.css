@@ -20,11 +20,13 @@
 label[for="profile_about"]{
     text-align: left;
     color:gray;
+    font-family: 'Cuprum', sans-serif;
 }
 
 #slam_request_lable{
     text-align: left;
     color:gray;
+    font-family: 'Cuprum', sans-serif;
 }
 
 .some_request{
@@ -58,6 +60,7 @@ label[for="profile_about"]{
 #my_slams_title{
     text-align: left;
     color:gray;
+    font-family: 'Cuprum', sans-serif;
 }
 
 #some_slam{

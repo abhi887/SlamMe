@@ -5,6 +5,7 @@
 {% block body %}
 <link rel="stylesheet" href="{% static 'user_search_res.css' %}">
     <div class="user_search_results">
+        {% if users|length > 0 %}
         {% for user in users %}
             <div id="user">
                 <i id="some_user_img" class="far fa-user-circle"></i>
@@ -26,5 +27,10 @@
                 {% endif %}
             </div>
         {% endfor %}
+        {% else %}
+            <blockquote>
+                No matching users found !
+            </blockquote>
+        {% endif %}
     </div>
 {% endblock %}

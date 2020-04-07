@@ -20,4 +20,5 @@ urlpatterns = [
     path('slam',views.fetch_slam,name='fetch_slam'),
     path('pptoggle',views.pub_priv_toggle,name='pub_priv_toggle'),
     path('slamwipe',views.slam_delete,name='slam_delete'),
+    path('reqdel',views.req_delete,name='req_delete'),
 ]

@@ -14,11 +14,13 @@
     #about_label{
         margin-top:10%;
         color:gray;
+        font-family: 'Cuprum', sans-serif;
     }
 
     #pub_slam_title{
         text-align: left;
         color:gray;
+        font-family: 'Cuprum', sans-serif;
     }
 
     .public_slam{
