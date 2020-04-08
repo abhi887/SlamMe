@@ -338,11 +338,10 @@ def req_delete(request):
         return fetch_login(request)
 
 def fetch_slam(request):
-    post_from=request.POST['post_from']
-    post_for=request.POST['post_for']
+    pid=request.POST['pid']
     # if (is_logged(request) and request.method=='POST'):
     try:
-        slam=slam_post.objects.get(post_from=post_from,post_for=post_for)
+        slam=slam_post.objects.get(id=pid)
         if not slam.public and not is_logged(request):
             return fetch_login(request)
     except:
@@ -358,9 +357,8 @@ def fetch_slam(request):
 
 def pub_priv_toggle(request):
     if(is_logged(request) and request.method == 'POST'):
-        post_from=request.POST['post_from']
-        post_for=request.POST['post_for']
-        slam=slam_post.objects.get(post_from=post_from,post_for=post_for)
+        pid=request.POST['pid']
+        slam=slam_post.objects.get(id=pid)
         if slam.public :
             slam.public=False
         else:

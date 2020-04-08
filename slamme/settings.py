@@ -88,13 +88,13 @@ DATABASES = {
 
     'default' : {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'HOST':'ec2-18-209-187-54.compute-1.amazonaws.com',
-        'DATABASE': 'd5gak8uhnkvc82',
-        'NAME': 'd5gak8uhnkvc82',
-        'USER':'vbyewjghjdbngr',
+        'HOST':'ec2-52-207-93-32.compute-1.amazonaws.com',
+        'DATABASE': 'd5q47kns09tv6b',
+        'NAME': 'd5q47kns09tv6b',
+        'USER':'fabdjxwxakfphz',
         'PORT':'5432',
-        'PASSWORD':'c932dbdf98bc404b77854db4d4b81842b59db10f4697efea06051bcdee52ed77',
-        'URI':'postgres://vbyewjghjdbngr:c932dbdf98bc404b77854db4d4b81842b59db10f4697efea06051bcdee52ed77@ec2-18-209-187-54.compute-1.amazonaws.com:5432/d5gak8uhnkvc82',
+        'PASSWORD':'79437b57fb8bfbe543f4507a454664b209d9796a9620d9d1338a8795116b4297',
+        'URI':os.getenv('DATABASE_URL'),
         'Heroku CLI':'heroku pg:psql postgresql-amorphous-93344 --app slamme',
     }
 

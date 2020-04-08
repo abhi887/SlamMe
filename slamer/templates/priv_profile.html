@@ -111,15 +111,13 @@
                         {% if slam.public == False %}
                         <form name="slam_pub_form" id="slam_pub_form" action="/pptoggle?user={{log_user}}" method="POST">
                             {% csrf_token %}
-                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
-                            <input type="text" name="post_for" id="post_for" value="{{log_user}}" style="display: none;">
+                            <input type="text" name="pid" id="pid" value="{{slam.id}}" style="display: none;">
                             <button id="slam_pub_submit" name="slam_pub_submit" type="submit">Make Public</button>
                         </form>
                         {% else %}
                         <form name="slam_priv_form" id="slam_priv_form" action="/pptoggle?user={{log_user}}" method="POST">
                             {% csrf_token %}
-                            <input type="text" name="post_from" id="post_from" value="{{slam.post_from}}" style="display: none;">
-                            <input type="text" name="post_for" id="post_for" value="{{log_user}}" style="display: none;">
+                            <input type="text" name="pid" id="pid" value="{{slam.id}}" style="display: none;">
                             <button id="slam_priv_submit" name="slam_priv_submit" type="submit">Make Private</button>
                         </form>
                         {% endif %}

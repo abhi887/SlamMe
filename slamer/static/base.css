@@ -1,3 +1,104 @@
+.header #site_name>a{
+    text-decoration: none;
+    color:#44b78b;
+    font-family: 'Lobster Two', cursive;
+}
+
+body{
+    background-color: ghostwhite;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    width:104%;
+    margin-left:-12%;
+    margin-top:-2%;
+    margin-right:-12%;
+    padding-top:2%;
+    padding-bottom:2%;
+    background-color: white;
+    border-bottom:1px groove black;
+}
+
+.header #site_name,.header #header_td{
+    position: static;
+    vertical-align:center;
+    display:table-cell;
+    width:85%;
+}
+
+.logged_area table{
+    width:100%;
+    text-align: center;
+    background-color:#44b78b;
+    position:fixed;
+    bottom: 0;
+    right:0;
+}
+
+.logged_area table button{
+    width:100%;
+    margin-top:0%;
+    margin-bottom:-10%;
+    padding:5%;
+    padding-top:8%;
+    border:1px solid transparent;
+    border-right :1px solid white;
+    background-color: transparent;
+}
+
+#log_username{
+    position:absolute;
+    top:0;
+    right:20;
+}
+
+#log_username_form button{
+    font-size: 140%;
+    color:white;
+}
+
+#log_username_form button[id='logout']{
+    color:red;
+}
+
+#user_search_form{
+    margin-bottom:15%;
+}
+
+#user_search_form input{
+    width:70%;
+    height:6%;
+    margin-top:10%;
+    text-align: center;
+    color:black;
+    border-radius:5em;
+    border:2px solid #00bcd4;
+    border-style: groove;
+    font-size: 110%;
+}
+
+#user_search_form input:active{}
+
+#user_search_form button{
+    margin-top:3%;
+    background-color:#00bcd4;
+    border-radius: 10%;
+    border:1px solid transparent;
+    padding:2%;
+}
+
+#login_button button{
+    position:absolute;
+    right:20;
+    top:15;
+    background-color: #44b78b;
+    border:1px solid transparent;
+    color:white;
+    padding:2%;
+}
+
+
 /* ============== ||||      |||| ============= */
 /* ============== ||||      |||| ============= */
 /* ============== ||  \    /  || ============= */

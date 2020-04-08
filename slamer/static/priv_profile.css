@@ -36,6 +36,7 @@ label[for="profile_about"]{
     box-shadow: 1px 1px 3px black;
     border:1px solid transparent;
     border-radius: 1em;
+    margin-bottom:4%;
 }
 
 #requester{
@@ -69,6 +70,7 @@ label[for="profile_about"]{
     color:black;
     background-color: rgb(204, 242, 255);
     box-shadow: 1px 1px 3px black;
+    margin-bottom:4%;
 }
 
 #log_username_form button{
