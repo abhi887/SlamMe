@@ -23,7 +23,7 @@ def get_login_template(request,context):
 
 def signup(request):
     if request.method == 'POST':
-        name=request.POST['name']
+        name=str(request.POST['name']).lower()
         username=str(request.POST['username']).lower()
         key=request.POST['key']
         confirm_key=request.POST['confirm_key']
@@ -114,9 +114,9 @@ def usearch(request):
     cursor=connection.cursor()
     users=[]
     # users_by_username=cursor.execute(f"select * from slamer_user where username like '{search_user}%'")
-    users_by_username=user.objects.filter(username__contains=str(search_user))
+    users_by_username=user.objects.filter(username__startswith=str(search_user))
     # users_by_name=cursor.execute(f"select * from slamer_user where name like '{search_user}%'")
-    users_by_name=user.objects.filter(name__contains=str(search_user))
+    users_by_name=user.objects.filter(name__startswith=str(search_user))
     for i in users_by_username:
         temp=[]
         if(i.username != request.GET.get('user')):
