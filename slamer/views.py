@@ -148,8 +148,8 @@ def usearch(request):
                 else:
                     if(len(auser) < 3):
                         auser.append('visible')
-                    else:
-                        auser[2]='visible'
+                    # else:
+                        # auser[2]='visible'
                 print(f"auser = {auser}")
     
     print(f"\nold_requests = {old_request}")
